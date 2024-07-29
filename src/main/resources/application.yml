@@ -1,0 +1,41 @@
+server:
+  port: 8000
+
+
+# localhost:8080/multiplications/~ 요청이 게이트웨이로 들어오게되면, predicates를 탐색하여,
+# 해당 라우트에 해당하는 엔드포인트로 전달합니다.
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: multiplications
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/multiplications/**
+        - id: results
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/results/**
+        - id: leaders
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/leaders/**
+        - id: stats
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/stats/**
+
+    # 설정에서 리본 및 유레카 사용 설정을 비활성화합니다.
+    loadbalancer:
+      eureka:
+        enabled: false
+
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: trace
