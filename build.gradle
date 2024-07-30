@@ -22,6 +22,13 @@ ext {
 }
 
 dependencies {
+
+	// 애플리케이션에 측정 정보, 매핑, 상태 정보, 로거 등의 모니터링에 대한 엔드포인트를 자동으로 만듬
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// Eureka 설정
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
 	implementation 'org.springframework.cloud:spring-cloud-starter-gateway-mvc'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
